@@ -1,7 +1,27 @@
-import React, { useState } from "react";
+import { useRef, useState } from "react";
+import { checkValidateData, validateName } from "../utils/validate";
 
 const Login = () => {
-  const [isSignInForm,setIsSignInForm] = useState(true)
+  const [isSignInForm,setIsSignInForm] = useState(true) 
+
+  const [errorMessage,setErrorMessage] = useState<string | null>(null)
+
+  const name = useRef<HTMLInputElement | null>(null);
+  const email = useRef<HTMLInputElement | null>(null);
+  const password = useRef<HTMLInputElement | null>(null);
+
+  const onSubmitHandler = () => {
+    // if(email.current && password.current){
+      const error = checkValidateData(email?.current?.value ?? "" ,password?.current?.value ?? "");
+      setErrorMessage(error);
+      if(!isSignInForm){
+        const error = validateName(name?.current?.value ?? "")
+        errorMessage ||  setErrorMessage(error)
+      }
+      console.log(email?.current?.value)
+      console.log(password?.current?.value)
+    // }
+  }
   return (
     <div>
       <div className="absolute">
@@ -12,6 +32,7 @@ const Login = () => {
       </div>
       <div className="relative top-40">
         <form
+          onSubmit={(e) => e.preventDefault()}
           className="w-1/3 flex flex-col mx-auto bg-[#000000] bg-opacity-[0.7]  p-5 text-white"
           action=""
         >
@@ -19,24 +40,29 @@ const Login = () => {
           {
             isSignInForm ||
             <input
+            ref={name}
             className="m-4 p-4  bg-transparent border-2 focus:border-white focus:outline-none border-white rounded-md"
             type="text"
             placeholder="Name"
           />
           }
           <input
+            ref={email}
             className="m-4 p-4  bg-transparent border-2 focus:border-white focus:outline-none border-white rounded-md"
             type="text"
             placeholder="Email"
           />
           <input
+            ref={password}
             className="m-4 p-4  bg-transparent border-2 focus:border-white focus:outline-none border-white rounded-md"
             type="password"
             placeholder="Enter Password"
           />
+          <p className="text-[#E50914] font-bold text-lg m-2 p-2">{errorMessage?  errorMessage : " "}</p>
           <button
             className="m-4 p-2  text-xl bg-[#E50914] rounded-md"
             type="submit"
+            onClick={onSubmitHandler}
           >
             {isSignInForm ? "Sign In" : "Sign Up"}
           </button>
