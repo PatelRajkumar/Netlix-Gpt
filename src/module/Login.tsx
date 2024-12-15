@@ -15,7 +15,6 @@ import { addUser } from "../utils/userSlice";
 import { LOGIN_BG_IMAGE } from "../assets/icons";
 
 const Login = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [isSignInForm, setIsSignInForm] = useState(true);
 
@@ -32,7 +31,6 @@ const Login = () => {
         email?.current?.value ?? "",
         password?.current?.value ?? ""
       );
-      navigate("/browse");
       console.log("sign in success", userCreds.user);
     } catch (error: unknown) {
       if (error instanceof FirebaseError) {
@@ -58,7 +56,6 @@ const Login = () => {
           displayName: user?.displayName,
         })
       );
-      navigate("/browse");
       console.log("sign up success", userCreds?.user);
     } catch (error: unknown) {
       if (error instanceof FirebaseError) {

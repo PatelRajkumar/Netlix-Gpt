@@ -20,16 +20,6 @@ const Body = () => {
     },
   ]);
 
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        const { uid, email, displayName } = user;
-        dispatch(addUser({ uid, email, displayName }));
-      } else {
-        dispatch(removeUser());
-      }
-    });
-  }, []);
   return (
     <div>
       <RouterProvider router={appRouter} />
