@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { addNowPlayingMovies } from "../utils/movieSlice";
+import { headerOptions } from "../utils/constant";
 
 const useNowPlayingMovies = () => {
   const dispatch = useDispatch();
@@ -9,10 +10,7 @@ const useNowPlayingMovies = () => {
       "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1";
     const options = {
       method: "GET",
-      headers: {
-        accept: "application/json",
-        Authorization: import.meta.env.VITE_TMDB_ACCESSTOKEN,
-      },
+      headers: headerOptions,
     };
     console.log(import.meta.env.VITE_TMDB_ACCESSTOKEN);
     const res = await fetch(url, options);
