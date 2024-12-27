@@ -12,11 +12,9 @@ const useNowPlayingMovies = () => {
       method: "GET",
       headers: headerOptions,
     };
-    console.log(import.meta.env.VITE_TMDB_ACCESSTOKEN);
     const res = await fetch(url, options);
     const data = await res.json();
     dispatch(addNowPlayingMovies(data.results));
-    console.log(data);
   };
   useEffect(() => {
     fetchMovies();

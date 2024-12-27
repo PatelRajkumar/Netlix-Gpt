@@ -15,7 +15,6 @@ const Header = () => {
       await signOut(auth);
       navigate("/");
     } catch {
-      console.log("Sign out failed");
     }
   };
 
@@ -39,7 +38,7 @@ const Header = () => {
         <img src={HEADER_NETFLIX_LOGO} alt="logo" />
       </div>
       {user && (
-        <div className="m-2 p-2 text-lg">
+        <div className="m-2 p-2 text-lg text-white">
           <span>{user.displayName ?? "Guest User"}</span>
           <button onClick={SignOutClick}> Sign Out</button>
         </div>
