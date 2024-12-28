@@ -1,17 +1,24 @@
 import { useEffect } from "react";
-import Header from "../component/Header";
-import { addNowPlayingMovies } from "../utils/movieSlice";
+import Header from "../../component/Header";
+import { addNowPlayingMovies } from "../../utils/movieSlice";
 import { useDispatch, useSelector } from "react-redux";
-import useNowPlayingMovies from "../hooks/useNowPlayingMovies";
-import VideoBackground from "../component/VideoBackground";
+import useNowPlayingMovies from "../../hooks/useNowPlayingMovies";
+import VideoBackground from "./VideoBackground";
+import SecondaryContainer from "./SecondaryContainer";
+import usePopularMovies from "../../hooks/usePopularMovies";
+import useTopRatedMovies from "../../hooks/useTopRatedMovies";
+import useUpComingMovies from "../../hooks/useUpComingMovies";
 
 const Browse = () => {
   useNowPlayingMovies();
+  usePopularMovies();
+  useTopRatedMovies();
+  useUpComingMovies()
   const movies = useSelector((store: any) => store?.movies?.nowPlayingMovies);
   if (!movies) return;
   const mainMovie = movies[0];
-  const { original_title, overview, id  } = mainMovie;
-  const movieId = String(id)
+  const { original_title, overview, id } = mainMovie;
+  const movieId = String(id);
   return (
     <div>
       <Header />
@@ -27,7 +34,8 @@ const Browse = () => {
           </button>
         </div>
       </div>
-      <VideoBackground movieId={movieId}/>
+      <VideoBackground movieId={movieId} />
+      <SecondaryContainer />
     </div>
   );
 };

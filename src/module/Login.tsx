@@ -76,16 +76,11 @@ const Login = () => {
       const error = validateName(name?.current?.value ?? "");
       if (!errorMessage) {
         setErrorMessage(error);
-        console.log("inside return");
         // return
       }
     }
-    console.log("Error message: " + errorMessage);
     if (errorMessage) return;
-    console.log("Checking for sign signup");
     isSignInForm ? signInHandler() : signUpHandler();
-    console.log(email?.current?.value);
-    console.log(password?.current?.value);
     // }
   };
   return (

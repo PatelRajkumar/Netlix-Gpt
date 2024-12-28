@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import { headerOptions } from "../utils/constant";
+import { headerOptions } from "../../utils/constant";
 import { useDispatch, useSelector } from "react-redux";
-import { addTrailerVideo } from "../utils/movieSlice";
-import useMovieTrailer from "../hooks/useMovieTrailer";
+import { addTrailerVideo } from "../../utils/movieSlice";
+import useMovieTrailer from "../../hooks/useMovieTrailer";
 
 type VideoBackgroundProps = {
   movieId: string;
