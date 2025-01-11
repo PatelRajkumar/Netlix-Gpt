@@ -2,9 +2,10 @@ import { useDispatch } from "react-redux";
 import { addTrailerVideo } from "../utils/movieSlice";
 import { headerOptions } from "../utils/constant";
 import { useEffect } from "react";
+import { movie_trailer_url } from "../utils/axios";
 
 const useMovieTrailer = (movieId:string) => {
-    const url = `https://api.themoviedb.org/3/movie/${movieId}/videos?language=en-US`;
+    const url = `${movie_trailer_url}${movieId}/videos?language=en-US`;
   const options = {
     method: "GET",
     headers: headerOptions,
